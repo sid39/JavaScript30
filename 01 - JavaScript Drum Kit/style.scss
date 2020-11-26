@@ -8,16 +8,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'IBM Plex Sans','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overscroll-behavior: none;
 }
 body,html {
   @include fullScreen();
   font-size: 10px;
 }
 body {
-  font-family: 'IBM Plex Sans','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	overscroll-behavior: none;
   background: url('https://i.imgur.com/b9r5sEL.jpg') bottom center no-repeat;
   background-size: cover;
   display: flex;
