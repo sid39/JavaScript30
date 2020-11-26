@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JS & CSS Clock</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="clock">
+      <div class="clock-face">
+        <div class="hand hour-hand"></div>
+        <div class="hand min-hand"></div>
+        <div class="hand second-hand"></div>
+      </div>
+    </div>
+    <script>
+      (function(){
+        const hour = document.querySelector('.hour-hand')
+        const min = document.querySelector('.min-hand')
+        const second = document.querySelector('.second-hand')
+
+        function setTime() {
+          const now = new Date()
+
+          const secondDeg = now.getSeconds() * 6 + 90
+          second.style.transform = `rotate(${secondDeg}deg)`
+
+          const minDeg = now.getMinutes() * 6 + now.getSeconds() * 6 / 60 + 90
+          min.style.transform = `rotate(${minDeg}deg)`
+
+          const hourDeg = now.getHours() * 30 + now.getMinutes() * 30 /60 + 90
+          hour.style.transform = `rotate(${hourDeg}deg)`
+          console.log(secondDeg,minDeg,hourDeg);
+        }
+        setInterval(setTime,1000)
+        setTime()
+      })()
+    </script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&display=swap");
+*, body, html {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'IBM Plex Sans','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+}
+
+body, html {
+  width: 100%;
+  height: 100vh;
+  font-size: 10px;
+}
+
+body {
+  background: -webkit-gradient(linear, right top, left bottom, from(#dfcc20), to(#0a6b17));
+  background: linear-gradient(to left bottom, #dfcc20 0%, #0a6b17 100%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.clock {
+  width: 30rem;
+  height: 30rem;
+  border: 1px solid rgba(194, 207, 168, 0.6);
+  border-radius: 50%;
+  margin: 50px auto;
+  position: relative;
+  padding: 2rem;
+  background-color: #efefef;
+  -webkit-box-shadow: 0 0 0 10px rgba(194, 207, 168, 0.6), inset -10px -10px 15px 5px white, inset 10px -10px 15px 5px rgba(194, 207, 168, 0.6), -10px 25px 30px 20px rgba(95, 112, 95, 0.8);
+          box-shadow: 0 0 0 10px rgba(194, 207, 168, 0.6), inset -10px -10px 15px 5px white, inset 10px -10px 15px 5px rgba(194, 207, 168, 0.6), -10px 25px 30px 20px rgba(95, 112, 95, 0.8);
+}
+
+.clock .clock-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.clock .clock-face::after {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  background-color: #6b7b6a;
+}
+
+.clock .clock-face .hand {
+  position: absolute;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 6px;
+}
+
+.clock .clock-face .hand.hour-hand::after {
+  content: '';
+  display: block;
+  width: 40%;
+  height: 6px;
+  background: rgba(95, 112, 95, 0.8);
+  margin: 0 0 0 10%;
+}
+
+.clock .clock-face .hand.min-hand::after {
+  content: '';
+  display: block;
+  width: 48%;
+  height: 4px;
+  background: rgba(95, 112, 95, 0.6);
+  margin: 1px 0 0 2%;
+}
+
+.clock .clock-face .hand.second-hand::after {
+  content: '';
+  display: block;
+  width: 50%;
+  height: 2px;
+  background: rgba(95, 112, 95, 0.4);
+  margin: 2px 0 0 0;
+}
+/*# sourceMappingURL=style.css.map */

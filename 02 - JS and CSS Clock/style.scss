@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&display=swap');
+@mixin fullScreen {
+  width: 100%;
+  height: 100vh;
+}
+
+*,body,html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overscroll-behavior: none;
+}
+body,html {
+  @include fullScreen();
+  font-size: 10px;
+}
+body {
+  background: linear-gradient(to left bottom, hsl(54, 75%, 50%) 0%,hsl(128, 83%, 23%) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock {
+  width: 30rem;
+  height: 30rem;
+  border: 1px solid rgba(194, 207, 168, 0.6);
+  border-radius: 50%;
+  margin: 50px auto;
+  position: relative;
+  padding: 2rem;
+  background-color: #efefef;
+  box-shadow:
+    0 0 0 10px rgba(194, 207, 168, 0.6),
+    inset -10px -10px 15px 5px rgba(255, 255, 255, 1),
+    inset 10px -10px 15px 5px rgba(194, 207, 168, 0.6),
+    -10px 25px 30px 20px rgba(95, 112, 95, 0.8);
+    .clock-face {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      &::after{
+        content: '';
+        display: block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,0);
+        -webkit-transform: translate(-50%,0);
+        -moz-transform: translate(-50%,0);
+        -ms-transform: translate(-50%,0);
+        -o-transform: translate(-50%,0);
+        background-color:  #6b7b6a;
+      }
+      .hand {
+        position: absolute;
+        transform-origin: center center;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        &.hour-hand{
+          &::after{
+            content: '';
+            display: block;
+            width: 40%;
+            height: 6px;
+            background: rgba(95, 112, 95, 0.8);
+            margin: 0 0 0 10%;
+          }
+        }
+        &.min-hand{
+          &::after{
+            content: '';
+            display: block;
+            width: 48%;
+            height: 4px;
+            background: rgba(95, 112, 95, 0.6);
+            margin: 1px 0 0 2%;
+          }
+        }
+        &.second-hand{
+          &::after{
+            content: '';
+            display: block;
+            width: 50%;
+            height: 2px;
+            background: rgba(95, 112, 95, 0.4);
+            margin: 2px 0 0 0;
+          }
+        }
+      }
+    }
+}
