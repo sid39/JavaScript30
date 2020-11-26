@@ -32,7 +32,7 @@
         function setTime() {
           const now = new Date()
 
-          const secondDeg = now.getSeconds() * 6 + 90
+          let secondDeg = now.getSeconds() * 6 + 90
           second.style.transform = `rotate(${secondDeg}deg)`
 
           const minDeg = now.getMinutes() * 6 + now.getSeconds() * 6 / 60 + 90
@@ -40,10 +40,15 @@
 
           const hourDeg = now.getHours() * 30 + now.getMinutes() * 30 /60 + 90
           hour.style.transform = `rotate(${hourDeg}deg)`
-          console.log(secondDeg,minDeg,hourDeg);
         }
-        setInterval(setTime,1000)
-        setTime()
+
+        function animationHandler(){
+          setTime()
+          window.requestAnimationFrame(animationHandler)
+        }
+        //setTime()
+        //setInterval(setTime,1000)
+        window.requestAnimationFrame(animationHandler)
       })()
     </script>
   </body>
