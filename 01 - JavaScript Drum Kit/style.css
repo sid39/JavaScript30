@@ -1,0 +1,94 @@
+*, body, html {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100vh;
+  font-size: 10px;
+}
+
+body {
+  background: url("https://i.imgur.com/b9r5sEL.jpg") bottom center no-repeat;
+  background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.keys {
+  width: 80vw;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(10rem, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-gap: 2rem;
+  justify-items: center;
+}
+
+.keys .key {
+  border: .4rem solid #fff;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  padding: .5rem;
+  width: 10rem;
+  height: 10rem;
+  -webkit-transition: all .07s ease;
+  transition: all .07s ease;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 .5rem black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.keys .key.playing {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-box-shadow: 0 0 1rem .5rem #fff;
+          box-shadow: 0 0 1rem .5rem #fff;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.keys .key kbd {
+  display: block;
+  font-size: 4rem;
+}
+
+.playing {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-box-shadow: 0 0 1rem .5rem #fff;
+          box-shadow: 0 0 1rem .5rem #fff;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.sound {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  color: #ffc600;
+}
+/*# sourceMappingURL=style.css.map */
