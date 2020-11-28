@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700,100&display=swap");
 *, body, html {
   margin: 0;
   padding: 0;
@@ -26,20 +26,16 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-canvas {
-  position: absolute;
-  z-index: 99;
-  top: 0;
-  left: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 p {
-  position: absolute;
-  z-index: 1;
+  font-size: calc( 3vw + 3vh + 1vmin);
+  margin: 0 20vw;
   display: block;
-  font-size: 39px;
-  color: #ccc;
+  font-weight: bold;
 }
 /*# sourceMappingURL=style.css.map */
