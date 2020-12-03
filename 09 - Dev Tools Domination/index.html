@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Console Tricks!</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <p onClick="makeGreen()">×BREAK×DOWN×</p>
+    <span>have a look at the JavaScript Console</span>
+    <script>
+        const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+        function makeGreen() {
+          const p = document.querySelector('p');
+          p.style.color = '#BADA55';
+          p.style.fontSize = '90px';
+        }
+
+        // Regular
+        console.log('Sid the man');
+        // Interpolated
+        console.log('%s the man 2','Sid');
+        console.log('%f',3.1415926);
+        console.log('%d',3.1415926);
+        // Styled
+        console.log('%c住手!', 'font-size:50px;font-weight:bold;color:red;-webkit-text-stroke: 1px black;');
+        // warning!
+        console.warn('警告');
+        // Error :|
+        console.error('錯誤');
+        // Info
+        console.info('Hello World');
+        // Testing
+        console.assert(1 === 2 , 'False');
+        // clearing
+        //console.clear();
+        // Viewing DOM Elements
+        console.log(dogs);
+        console.dir(dogs);
+        // Grouping together
+        dogs.forEach(dog => {
+          console.groupCollapsed(`${dog.name}`);
+          console.log(`This is ${dog.name}`);
+          console.log(`${dog.name} is ${dog.age} years old`);
+          console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+          console.groupEnd(`${dog.name}`);
+        });
+        // counting
+        console.count('Hello');
+        console.count('World');
+        console.count('World');
+        // timing
+        console.time('fetching data');
+        fetch('https://api.github.com/users/wesbos')
+          .then(data => data.json())
+          .then(data => {
+            console.timeEnd('fetching data');
+            console.log(data);
+        });
+        //table
+        console.table(dogs);
+        console.table(dogs,['name']);
+    </script>
+  </body>
+</html>

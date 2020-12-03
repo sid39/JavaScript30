@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mouse Shadow</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="hero">
+      <h1 contenteditable>🔥WOAH!</h1>
+    </div>
+    <script>
+      (function(){
+        const hero = document.querySelector('.hero');
+        const h1 = document.querySelector('h1');
+        let distance = 100;
+
+        function shadow(e){
+          let {offsetX,offsetY} = e;
+          if(e.target !== this){
+            offsetX += e.target.offsetLeft;
+            offsetY += e.target.offsetTop;
+          }
+          let dx = Math.floor(offsetX/hero.offsetWidth*distance)*2-distance;
+          let dy = Math.floor(offsetY/hero.offsetHeight*distance)*2-distance;
+          //console.log(dx,dy);
+          h1.style.textShadow = `
+            ${dx*-.2}px ${dy*-.2}px 5px rgba(255,100,100,0.6),
+            ${dx*-.4}px ${dy*-.4}px 5px rgba(100,255,100,0.5),
+            ${dx*-.6}px ${dy*-.6}px 5px rgba(100,100,255,0.4),
+            ${dx*-.8}px ${dy*-.8}px 5px rgba(255,255,100,0.3),
+            ${dx*-1}px ${dy*-1}px 5px rgba(100,255,255,0.2),
+            ${dx*-1.2}px ${dy*-1.2}px 5px rgba(255,100,255,0.1)
+          `;
+        }
+        hero.addEventListener('mousemove',shadow)
+      })()
+    </script>
+  </body>
+</html>
