@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Understanding JavaScript's Capture</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bod">
+    <div class="one">
+      <div class="two">
+        <div class="three"></div>
+      </div>
+    </div>
+    <section class="txt"></section>
+    <button>Once Button</button>
+    <ul>
+      <li><a href="javascript:;">Button1</a></li>
+      <li><a href="javascript:;">Button2</a></li>
+      <li><a href="javascript:;">Button3</a></li>
+    </ul>
+    <script>
+      (function () {
+        const btn = document.querySelector('button')
+        const divs = document.querySelectorAll('div')
+        const aBtn = document.querySelectorAll('a')
+        const ul = document.querySelector('ul')
+        const txt = document.querySelector('.txt')
+        function buttonHandler() {
+          txt.innerHTML = '';
+          txt.innerHTML = 'ClickKKkkkkKk!';
+        }
+        function divHandler(e) { 
+          e.stopPropagation();
+          txt.innerHTML = '';
+          txt.innerHTML = this.className;
+          console.log(e.composedPath);
+          console.log(this.className);
+        }
+        function aHandler(e) { 
+          e.preventDefault();
+          txt.innerHTML = '';
+          txt.innerHTML = `Binding A Click:${this.innerHTML} `;
+          console.log('Binding A Click:',this);
+        }
+        function ulHandler(e) { 
+          if(e.target.nodeName === 'A'){
+            e.preventDefault();
+            txt.append(`| Delegate A Click:${e.target.innerHTML}`)
+            console.log('Delegate A Click:',e.target);
+          }
+        }
+        btn.addEventListener('click',buttonHandler,{capture:false,once:true})
+        divs.forEach(div=>div.addEventListener('click',divHandler,{capture:false}))
+        aBtn.forEach(a=>a.addEventListener('click',aHandler,{capture:false,passive:false}))
+        ul.addEventListener('click',ulHandler)
+      })();
+    </script>
+  </body>
+</html>
