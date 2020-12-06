@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Countdown Timer</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Inconsolata"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="timer">
+      <div class="timer__controls">
+        <button data-time="20" class="timer__button">20 Secs</button>
+        <button data-time="300" class="timer__button">Work 5</button>
+        <button data-time="900" class="timer__button">Quick 15</button>
+        <button data-time="1200" class="timer__button">Snack 20</button>
+        <button data-time="3600" class="timer__button">Lunch Break</button>
+        <form name="customForm" id="custom">
+          <input type="text" name="minutes" placeholder="Enter Minutes" />
+        </form>
+      </div>
+      <div class="display">
+        <h1 class="display__time-left">00:00:00</h1>
+        <p class="display__end-time">Be Back At 00:00:00</p>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        let countDown;
+        const buttons = document.querySelectorAll(".timer__controls > button");
+        const timeLeft = document.querySelector(".display__time-left");
+        const timeEnd = document.querySelector(".display__end-time");
+
+        function setCountDown(sec) {
+          clearInterval(countDown);
+          const end = Date.now() + sec * 1000;
+          displayTimeLeft(sec);
+          displayEndTime(end);
+
+          countDown = setInterval(() => {
+            const secLeft = Math.round((end - Date.now()) / 1000);
+            if (secLeft <= 0) {
+              clearInterval(countDown);
+              timeLeft.innerText = `Time's Up`
+              return;
+            }
+            displayTimeLeft(secLeft);
+          }, 16);
+          
+        }
+        function displayTimeLeft(sec) {
+          const hourLeft = Math.floor(sec / 3600);
+          const minsLeft = Math.floor(sec / 60) >= 60 ? Math.floor(sec / 60)%60:Math.floor(sec / 60);
+          const secsLeft = sec % 60;
+          const displayTime = `${hourLeft < 10 ? "0" : ""}${hourLeft}:${minsLeft < 10 ? "0" : ""}${minsLeft}:${
+            secsLeft < 10 ? "0" : ""
+          }${secsLeft}`;
+          timeLeft.innerText = displayTime;
+        }
+        function displayEndTime(end) {
+          const endTime = new Date(end);
+          const endHour = endTime.getHours();
+          const adjustedHour = endHour > 12 ? endHour - 12 : endHour;
+          const endMins = endTime.getMinutes();
+          const endSecs = endTime.getSeconds();
+          timeEnd.innerText = `Be Back At ${endHour > 12 ? "PM " : "AM "}${
+            adjustedHour < 10 ? "0" : ""
+          }${adjustedHour}:${endMins < 10 ? "0" : ""}${endMins}:${endSecs < 10 ? "0" : ""}${endSecs}`;
+        }
+        function startTimer() {
+          const setTime = parseInt(this.dataset.time);
+          setCountDown(setTime);
+        }
+        function setMins(e) {
+          e.preventDefault();
+          const inputMins =
+            document.querySelector("#custom > input").value * 60;
+          const pattern = /^[0-9]+$/;
+          const matchInt = pattern.test(inputMins);
+          if (matchInt) {
+            setCountDown(inputMins);
+          }
+          this.reset();
+        }
+        buttons.forEach((button) =>
+          button.addEventListener("click", startTimer)
+        );
+        document.querySelector("#custom").addEventListener("submit", setMins);
+      })();
+    </script>
+  </body>
+</html>
