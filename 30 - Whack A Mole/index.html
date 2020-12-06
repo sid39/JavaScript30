@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Whack A Mole!</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="startContainer">
+      <h1>Whack-a-mole!</h1>
+      <div class="board">Your scroe:</div>
+      <button class="startBtn">START</button>
+    </div>
+    <h1>Whack-a-mole! <span class="score">0</span></h1>
+    <div class="timer">00</div>
+    <div class="game">
+      <div class="hole hole1">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole2">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole3">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole4">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole5">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole6">
+        <div class="mole"></div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        let score = 0;
+        let timesOver = false;
+        let countDown;
+        let timer;
+        const scoreBoard = document.querySelector(".score");
+        const moles = [...document.querySelectorAll(".mole")];
+        const status = moles.reduce((prev, current, index) => {
+          prev[index] = false;
+          return prev;
+        }, {});
+        const clickHandler = function () {
+          if(moleProxy[moles.indexOf(this)]){
+            gameScore(score + 1)
+            moleProxy[moles.indexOf(this)] = false
+          }
+        };
+        let moleProxy = new Proxy(status, {
+          get(target, key) {
+            return target[key];
+          },
+          set(target, key, value) {
+            target[key] = value;
+            moles[key].removeEventListener("click", clickHandler);
+            if(value){
+              moles[key].addEventListener("click", clickHandler)
+              moles[key].classList.add('up')
+            }else{
+              moles[key].classList.remove('up')
+            } 
+          },
+        });
+        const START = document.querySelector(".startBtn");
+        const BOARD = document.querySelector(".board");
+  
+        function gameScore(s) {
+          score = s;
+          scoreBoard.innerText = score;
+        }
+        function randomMole() {
+          const mole = Math.floor(Math.random()*moles.length)
+          const time = Math.random()*750+750
+          if(moleProxy[mole]) return randomMole()
+          moleProxy[mole] = true
+          setTimeout(()=>{
+            if(!timesOver) randomMole()
+            moleProxy[mole] = false
+          },time/(Math.random()*1+1.5))
+        }
+        function timeDown() {
+          timer = setInterval(() => {
+            if(countDown<=1){
+              clearInterval(timer)
+              console.log('clear');
+            }else{
+              countDown-=1
+              document.querySelector(".timer").innerText = countDown;
+            }
+          }, 1000)
+        }
+
+        function timesUp(myScore) {
+          document.querySelector(".startContainer").classList.add("end");
+          BOARD.innerText = `Your scroe: ${myScore}`;
+          START.innerText = "PLAY AGAIN";
+          document.querySelector(".startContainer").classList.remove("hide");
+        }
+        function startGame() {
+          timesOver = false;
+          score = 0;
+          countDown = 10;
+          document.querySelector(".timer").innerText = countDown;
+          scoreBoard.innerText = score;
+          document.querySelector(".startContainer").classList.add("hide");
+          randomMole()
+          timeDown()
+          setTimeout(() => {
+            timesOver = true
+            timesUp(score)
+          }, countDown*1000)
+        }
+        START.addEventListener("click", startGame);
+      })();
+    </script>
+  </body>
+</html>
